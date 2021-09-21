@@ -3,6 +3,9 @@ package br.com.azor.library.api.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,14 +26,15 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-
 import br.com.azor.library.api.exception.BusinessException;
 import br.com.azor.library.api.model.entity.Book;
+import br.com.azor.library.api.payloads.BookPayloadFactor;
 import br.com.azor.library.api.repository.BookRepository;
+import jdk.jfr.Description;
 
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
-@DisplayName("Services - BookService")
+@DisplayName("Service - BookService")
 public class BookServiceTest {
 	
 	BookService service;
@@ -44,8 +48,6 @@ public class BookServiceTest {
 		this.service = new BookServiceImpl(repository);
 	}
 	
-	
-	
 	@Test
 	@DisplayName("Deve criar um novo cadastro")
 	@Order(value = 1)
@@ -57,20 +59,17 @@ public class BookServiceTest {
 		// Mocks do retorno do service
 		//TODO : Estudar este ponto Mocar retorno de crud
 		Mockito.when(repository.save(book))
-				.thenReturn(Book.builder().id(11L).author("Azor").title("O mundo é legal").isbn("1212121").build());
+				.thenReturn(BookPayloadFactor.bookDataBook());
 		// execução
 		Book savedBook = service.save(book);
 
 		// Verificação
 		assertThat(savedBook.getId()).isNotNull();
-		assertThat(savedBook.getTitle()).isEqualTo("O mundo é legal");
-		assertThat(savedBook.getIsbn()).isEqualTo("1212121");
+		assertThat(savedBook.getTitle()).isEqualTo("Meus Livros");
+		assertThat(savedBook.getIsbn()).isEqualTo("121212");
 		assertThat(savedBook.getAuthor()).isEqualTo("Azor");
 
 	}
-
-
-	
 	
 	@Test
 	@DisplayName("Deve-se lançar uma exceção ao tentar cadastrar um libro com o ISBN duplicado")
@@ -116,6 +115,7 @@ public class BookServiceTest {
 
 	}
 	
+
 	@Test
 	@DisplayName("Deve retornar vazio quando consultar um livro inexistente")
 	@Order(value = 4)
@@ -135,7 +135,7 @@ public class BookServiceTest {
 	}
 	
 	@Test
-	@DisplayName("Deve exclir um livro")
+	@DisplayName("Deve excluir um livro")
 	public void ShouldDeleteBookTest() {
 		Book book = Book.builder().id(11L).build();
 	
@@ -143,6 +143,7 @@ public class BookServiceTest {
 		Mockito.verify(repository, Mockito.times(1)).deleteById(book.getId());
 
 	}
+	
 	
 	@Test
 	@DisplayName("Deve ocorrer um erro ao deletar um livro inexisten")
@@ -175,7 +176,7 @@ public class BookServiceTest {
 		Book book = createdValidBook();
 		book.setId(id);
 
-		Mockito.when(repository.save(book)).thenReturn(book);
+		when(repository.save(book)).thenReturn(book);
 
 		Book bookReturn = service.update(book);
 
@@ -185,7 +186,6 @@ public class BookServiceTest {
 		assertThat(bookReturn.getTitle()).isEqualTo(book.getTitle());
 
 	}
-	
 	
 	@SuppressWarnings("unchecked")
 	@Test
@@ -199,7 +199,8 @@ public class BookServiceTest {
 		Page<Book> page = new PageImpl<Book>(lista, PageRequest.of(0, 10), 1);
 
 		Mockito.when(repository.findAll(Mockito.any(Example.class), Mockito.any(PageRequest.class))).thenReturn(page);
-
+		//TODO :Analisar retorno de advertencia unchecked
+		
 		Page<Book> result = service.find(book, pageRequest);
 
 		assertThat(result.getTotalElements()).isEqualTo(1);
@@ -210,6 +211,25 @@ public class BookServiceTest {
 	}
 
 	
+	
+	@Test
+	@Description("Deve obter um livro pelo Isbn")
+	public void findByIsbnBookServiceTest() {
+
+		String isbn = "123";
+		Book bookDataBook = BookPayloadFactor.bookDataBook();
+
+		when(repository.findByIsbn(isbn)).thenReturn(Optional.of(bookDataBook));
+
+		Optional<Book> returFindByIsbn = service.getBookByIsbn(isbn);
+
+		verify(repository, times(1)).findByIsbn(isbn);
+
+		assertThat(returFindByIsbn.isPresent()).isTrue();
+		assertThat(returFindByIsbn.get().getId()).isEqualTo(bookDataBook.getId());
+		assertThat(returFindByIsbn.get().getIsbn()).isEqualTo(bookDataBook.getIsbn());
+
+	}
 	
 	private Book createdValidBook() {
 		Book book = Book.builder().author("Azor").title("O mundo é legal").isbn("1212121").build();

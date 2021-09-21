@@ -38,7 +38,7 @@ import br.com.azor.library.api.service.BookService;
 
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
-@WebMvcTest
+@WebMvcTest(controllers = BookController.class)
 @AutoConfigureMockMvc
 @DisplayName("Controller - BookController")
 public class BookControllerTest {
@@ -55,7 +55,6 @@ public class BookControllerTest {
 	@Test
 	@DisplayName("Criar Cadastro de Books com Sucesso")
 	public void createBookTest() throws Exception {
-
 		BookDTO bookRequest = createNewBook();
 		
 		Book newBook = Book.builder()
@@ -260,7 +259,6 @@ public class BookControllerTest {
 	}
 	
 	
-	//Exclusão de um livro
 	@Test
 	@DisplayName("Deve Listar todos os livros")
 	public void findBookAllTest () throws Exception {
@@ -291,16 +289,9 @@ public class BookControllerTest {
 		
 	}
 	
-	
-	@Test
-	@DisplayName("Deve filtrar livros ")
-	public void findBookTest() {
-		
-	}
-	
+
 
 	private BookDTO createNewBook() {
-
 		BookDTO bookRequest = BookDTO.builder().title("Meu Livros").author("Azor").isbn("121212").build();
 		return bookRequest;
 	}

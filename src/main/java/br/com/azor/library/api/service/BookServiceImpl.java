@@ -11,16 +11,14 @@ import org.springframework.stereotype.Service;
 import br.com.azor.library.api.exception.BusinessException;
 import br.com.azor.library.api.model.entity.Book;
 import br.com.azor.library.api.repository.BookRepository;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class BookServiceImpl implements BookService {
 
-	private BookRepository repository;
+	private final BookRepository repository;
 	
-	public BookServiceImpl(BookRepository repository) {
-		super();
-		this.repository = repository;
-	}
 
 	@Override
 	public Book save(Book book) {
@@ -65,6 +63,11 @@ public class BookServiceImpl implements BookService {
 					.withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING)
 				);
 		return this.repository.findAll(example, pageable);
+	}
+
+	@Override
+	public Optional<Book> getBookByIsbn(String isbn) {
+		return repository.findByIsbn(isbn);
 	}
 
 }
