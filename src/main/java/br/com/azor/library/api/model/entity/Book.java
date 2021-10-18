@@ -1,10 +1,13 @@
 package br.com.azor.library.api.model.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,5 +33,8 @@ public class Book {
 	private String author;
 	@Column
 	private String isbn;
+
+	@OneToMany(mappedBy = "book")
+	private List<Loan> loans;
 
 }

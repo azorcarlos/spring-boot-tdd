@@ -22,21 +22,22 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import br.com.azor.library.api.dto.BookDTO;
+import br.com.azor.library.api.dto.LoanDTO;
 import br.com.azor.library.api.model.entity.Book;
 import br.com.azor.library.api.service.BookService;
+import br.com.azor.library.api.service.LoanService;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/books")
+@RequiredArgsConstructor
 public class BookController {
 
-	private BookService service;
-	private ModelMapper modelMapper;
+	private final BookService service;
+	private final ModelMapper modelMapper;
+	private final LoanService loanService;
 
-	public BookController(BookService service, ModelMapper modelMapper) {
-		this.service = service;
-		this.modelMapper = modelMapper;
 
-	}
 
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
@@ -84,6 +85,14 @@ public class BookController {
 
 	}
 	
+	
+	@GetMapping("{id}/loans")
+	public Page<LoanDTO>loansByBook(@PathVariable Long id, Pageable pegeable){
+		
+		Book book = service.findById(id).orElseThrow(() ->  new ResponseStatusException(HttpStatus.NOT_FOUND));
+		loanService.find(null, pegeable);
+		return null;
+	}
 	
 	@DeleteMapping("{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
