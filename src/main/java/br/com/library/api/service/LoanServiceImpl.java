@@ -1,4 +1,4 @@
-package br.com.azor.library.api.service;
+package br.com.library.api.service;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -8,11 +8,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.azor.library.api.dto.LoanFilterDTO;
-import br.com.azor.library.api.exception.BusinessException;
-import br.com.azor.library.api.model.entity.Book;
-import br.com.azor.library.api.model.entity.Loan;
-import br.com.azor.library.api.repository.LoanRepository;
+import br.com.library.api.dto.LoanFilterDTO;
+import br.com.library.api.exception.BusinessException;
+import br.com.library.api.model.entity.Book;
+import br.com.library.api.model.entity.Loan;
+import br.com.library.api.repository.LoanRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service

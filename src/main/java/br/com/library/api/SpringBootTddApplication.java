@@ -1,4 +1,4 @@
-package br.com.azor.library.api;
+package br.com.library.api;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;

@@ -1,4 +1,4 @@
-package br.com.azor.library.api.exception;
+package br.com.library.api.exception;
 
 import java.util.ArrayList;
 import java.util.Arrays;

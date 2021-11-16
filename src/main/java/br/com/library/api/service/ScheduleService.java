@@ -1,4 +1,4 @@
-package br.com.azor.library.api.service;
+package br.com.library.api.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import br.com.azor.library.api.model.entity.Loan;
+import br.com.library.api.model.entity.Loan;
 import lombok.RequiredArgsConstructor;
 
 @Service

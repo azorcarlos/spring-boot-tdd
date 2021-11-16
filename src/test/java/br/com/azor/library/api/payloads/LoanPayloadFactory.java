@@ -2,7 +2,7 @@ package br.com.azor.library.api.payloads;
 
 import java.time.LocalDate;
 
-import br.com.azor.library.api.model.entity.Loan;
+import br.com.library.api.model.entity.Loan;
 
 public class LoanPayloadFactory {
 	

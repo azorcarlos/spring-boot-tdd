@@ -26,10 +26,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import br.com.azor.library.api.exception.BusinessException;
-import br.com.azor.library.api.model.entity.Book;
 import br.com.azor.library.api.payloads.BookPayloadFactor;
-import br.com.azor.library.api.repository.BookRepository;
+import br.com.library.api.exception.BusinessException;
+import br.com.library.api.model.entity.Book;
+import br.com.library.api.repository.BookRepository;
+import br.com.library.api.service.BookService;
+import br.com.library.api.service.BookServiceImpl;
 import jdk.jfr.Description;
 
 @ExtendWith(SpringExtension.class)

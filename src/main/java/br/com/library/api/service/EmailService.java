@@ -1,4 +1,4 @@
-package br.com.azor.library.api.service;
+package br.com.library.api.service;
 
 import java.util.List;
 

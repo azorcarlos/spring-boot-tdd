@@ -1,4 +1,4 @@
-package br.com.azor.library.api.service;
+package br.com.library.api.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import br.com.azor.library.api.dto.LoanFilterDTO;
-import br.com.azor.library.api.model.entity.Book;
-import br.com.azor.library.api.model.entity.Loan;
+import br.com.library.api.dto.LoanFilterDTO;
+import br.com.library.api.model.entity.Book;
+import br.com.library.api.model.entity.Loan;
 
 public interface LoanService {
 

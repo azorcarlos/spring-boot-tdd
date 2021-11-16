@@ -1,6 +1,6 @@
 package br.com.azor.library.api.payloads;
 
-import br.com.azor.library.api.model.entity.Book;
+import br.com.library.api.model.entity.Book;
 
 public class BookPayloadFactor {
 	

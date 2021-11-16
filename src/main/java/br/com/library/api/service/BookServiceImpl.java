@@ -1,4 +1,4 @@
-package br.com.azor.library.api.service;
+package br.com.library.api.service;
 
 import java.util.Optional;
 
@@ -8,9 +8,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.azor.library.api.exception.BusinessException;
-import br.com.azor.library.api.model.entity.Book;
-import br.com.azor.library.api.repository.BookRepository;
+import br.com.library.api.exception.BusinessException;
+import br.com.library.api.model.entity.Book;
+import br.com.library.api.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service

@@ -13,7 +13,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import br.com.azor.library.api.model.entity.Book;
+import br.com.library.api.model.entity.Book;
+import br.com.library.api.repository.BookRepository;
 
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("teste")

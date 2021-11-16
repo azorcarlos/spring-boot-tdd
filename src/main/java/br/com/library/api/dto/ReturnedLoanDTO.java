@@ -1,4 +1,4 @@
-package br.com.azor.library.api.dto;
+package br.com.library.api.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

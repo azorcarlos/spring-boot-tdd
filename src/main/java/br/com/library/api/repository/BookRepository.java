@@ -1,11 +1,11 @@
-package br.com.azor.library.api.repository;
+package br.com.library.api.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.azor.library.api.model.entity.Book;
+import br.com.library.api.model.entity.Book;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {

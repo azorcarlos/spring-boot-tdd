@@ -1,4 +1,4 @@
-package br.com.azor.library.api.resource;
+package br.com.library.api.resource;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,12 +21,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.azor.library.api.dto.BookDTO;
-import br.com.azor.library.api.dto.LoanDTO;
-import br.com.azor.library.api.model.entity.Book;
-import br.com.azor.library.api.model.entity.Loan;
-import br.com.azor.library.api.service.BookService;
-import br.com.azor.library.api.service.LoanService;
+import br.com.library.api.dto.BookDTO;
+import br.com.library.api.dto.LoanDTO;
+import br.com.library.api.model.entity.Book;
+import br.com.library.api.model.entity.Loan;
+import br.com.library.api.service.BookService;
+import br.com.library.api.service.LoanService;
 import lombok.RequiredArgsConstructor;
 
 @RestController

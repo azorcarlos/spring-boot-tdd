@@ -1,6 +1,4 @@
-package br.com.azor.library.api.dto;
-
-import javax.validation.constraints.NotEmpty;
+package br.com.library.api.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,18 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class LoanDTO {
-
+public class LoanFilterDTO {
 	private Long id;
-	@NotEmpty
-	private String customer;
-
-	@NotEmpty
-	private String email;
-
-	@NotEmpty
 	private String isbn;
-
+	private String customer;
 	private BookDTO book;
+	
 
 }

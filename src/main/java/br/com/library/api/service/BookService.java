@@ -1,11 +1,11 @@
-package br.com.azor.library.api.service;
+package br.com.library.api.service;
 
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import br.com.azor.library.api.model.entity.Book;
+import br.com.library.api.model.entity.Book;
 
 public interface BookService {
 

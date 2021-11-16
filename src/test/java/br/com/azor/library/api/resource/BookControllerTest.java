@@ -31,11 +31,12 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.azor.library.api.dto.BookDTO;
-import br.com.azor.library.api.exception.BusinessException;
-import br.com.azor.library.api.model.entity.Book;
-import br.com.azor.library.api.service.BookService;
-import br.com.azor.library.api.service.LoanService;
+import br.com.library.api.dto.BookDTO;
+import br.com.library.api.exception.BusinessException;
+import br.com.library.api.model.entity.Book;
+import br.com.library.api.resource.BookController;
+import br.com.library.api.service.BookService;
+import br.com.library.api.service.LoanService;
 
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")

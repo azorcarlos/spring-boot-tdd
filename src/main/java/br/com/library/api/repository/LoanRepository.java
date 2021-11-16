@@ -1,4 +1,4 @@
-package br.com.azor.library.api.repository;
+package br.com.library.api.repository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -10,8 +10,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import br.com.azor.library.api.model.entity.Book;
-import br.com.azor.library.api.model.entity.Loan;
+import br.com.library.api.model.entity.Book;
+import br.com.library.api.model.entity.Loan;
 
 @Repository
 public interface LoanRepository extends JpaRepository<Loan, Long> {
