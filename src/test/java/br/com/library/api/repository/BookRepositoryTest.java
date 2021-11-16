@@ -1,4 +1,4 @@
-package br.com.azor.library.api.repository;
+package br.com.library.api.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

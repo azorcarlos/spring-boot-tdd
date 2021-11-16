@@ -1,4 +1,4 @@
-package br.com.azor.library.api.service;
+package br.com.library.api.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
@@ -24,12 +24,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import br.com.azor.library.api.payloads.BookPayloadFactor;
-import br.com.azor.library.api.payloads.LoanPayloadFactory;
 import br.com.library.api.dto.LoanFilterDTO;
 import br.com.library.api.exception.BusinessException;
 import br.com.library.api.model.entity.Book;
 import br.com.library.api.model.entity.Loan;
+import br.com.library.api.payloads.BookPayloadFactor;
+import br.com.library.api.payloads.LoanPayloadFactory;
 import br.com.library.api.repository.LoanRepository;
 import br.com.library.api.service.LoanService;
 import br.com.library.api.service.LoanServiceImpl;

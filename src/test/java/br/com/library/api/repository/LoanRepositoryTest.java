@@ -1,4 +1,4 @@
-package br.com.azor.library.api.repository;
+package br.com.library.api.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,10 +14,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import br.com.azor.library.api.payloads.BookPayloadFactor;
-import br.com.azor.library.api.payloads.LoanPayloadFactory;
 import br.com.library.api.model.entity.Book;
 import br.com.library.api.model.entity.Loan;
+import br.com.library.api.payloads.BookPayloadFactor;
+import br.com.library.api.payloads.LoanPayloadFactory;
 import br.com.library.api.repository.LoanRepository;
 import jdk.jfr.Description;
 

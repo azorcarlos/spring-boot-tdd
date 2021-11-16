@@ -1,4 +1,4 @@
-package br.com.azor.library.api.service;
+package br.com.library.api.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -26,9 +26,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import br.com.azor.library.api.payloads.BookPayloadFactor;
 import br.com.library.api.exception.BusinessException;
 import br.com.library.api.model.entity.Book;
+import br.com.library.api.payloads.BookPayloadFactor;
 import br.com.library.api.repository.BookRepository;
 import br.com.library.api.service.BookService;
 import br.com.library.api.service.BookServiceImpl;

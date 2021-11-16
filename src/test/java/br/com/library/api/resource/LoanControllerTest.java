@@ -1,4 +1,4 @@
-package br.com.azor.library.api.resource;
+package br.com.library.api.resource;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -31,13 +31,13 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.azor.library.api.payloads.BookPayloadFactor;
-import br.com.azor.library.api.payloads.LoanPayloadFactory;
 import br.com.library.api.dto.LoanDTO;
 import br.com.library.api.dto.LoanFilterDTO;
 import br.com.library.api.dto.ReturnedLoanDTO;
 import br.com.library.api.exception.BusinessException;
 import br.com.library.api.model.entity.Loan;
+import br.com.library.api.payloads.BookPayloadFactor;
+import br.com.library.api.payloads.LoanPayloadFactory;
 import br.com.library.api.resource.LoanController;
 import br.com.library.api.service.BookService;
 import br.com.library.api.service.LoanService;

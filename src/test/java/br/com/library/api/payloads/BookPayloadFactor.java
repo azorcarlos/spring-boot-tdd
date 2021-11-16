@@ -1,4 +1,4 @@
-package br.com.azor.library.api.payloads;
+package br.com.library.api.payloads;
 
 import br.com.library.api.model.entity.Book;
 

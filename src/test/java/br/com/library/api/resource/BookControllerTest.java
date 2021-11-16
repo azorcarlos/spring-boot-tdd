@@ -1,4 +1,4 @@
-package br.com.azor.library.api.resource;
+package br.com.library.api.resource;
 
 
 import static org.hamcrest.Matchers.hasSize;
