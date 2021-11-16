@@ -6,9 +6,10 @@ import br.com.azor.library.api.model.entity.Loan;
 
 public class LoanPayloadFactory {
 	
-	public static Loan getNewLoan() {
+	public static Loan getNewLoan(LocalDate loanDate) {
 		return Loan.builder()
 				.customer("Fulano")
+				.loanDate(loanDate)
 				.book(BookPayloadFactor.bookDataBook())
 				.build();
 	}

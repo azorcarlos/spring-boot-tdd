@@ -1,5 +1,7 @@
 package br.com.azor.library.api.service;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -45,6 +47,15 @@ public class LoanServiceImpl implements LoanService {
 	@Override
 	public Page<Loan> getLoansByBook(Book book, Pageable pegeable) {
 		return repository.findByBook(book, pegeable);
+	}
+
+	@Override
+	public List<Loan> getAllLateLoans() {
+
+		final Integer loanDays = 4;
+		LocalDate threDaysAgo = LocalDate.now().minusDays(loanDays);
+		
+		return repository.findByLoanDateLessThanAndNotReturned(threDaysAgo);
 	}
 
 }

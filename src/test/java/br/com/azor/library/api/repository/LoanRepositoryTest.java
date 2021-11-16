@@ -2,6 +2,8 @@ package br.com.azor.library.api.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -37,7 +39,7 @@ public class LoanRepositoryTest {
 		Book book = BookPayloadFactor.createNewBook();
 		entityManager.persist(book);
 
-		Loan loan = LoanPayloadFactory.getNewLoan();
+		Loan loan = LoanPayloadFactory.getNewLoan(LocalDate.now());
 		loan.setBook(book);
 
 		entityManager.persist(loan);
@@ -47,32 +49,62 @@ public class LoanRepositoryTest {
 		assertThat(exists).isTrue();
 
 	}
-	
+
 	@Test
-	@DisplayName("Deve buscar empréstimo pelo isbn do livro ou customer")
-	public void findByBookIsbnOrCustomerTest() {
-		
+	@DisplayName("Deve obter empresimo vencidos a três dias atrás")
+	public void findByLoanDateLessThanAndNotReturnedTest() {
+
 		Book book = BookPayloadFactor.createNewBook();
 		entityManager.persist(book);
 
-		Loan loan = LoanPayloadFactory.getNewLoan();
+		Loan loan = LoanPayloadFactory.getNewLoan(LocalDate.now().minusDays(5));
 		loan.setBook(book);
 
 		entityManager.persist(loan);
-		
+
+		var result = repository.findByLoanDateLessThanAndNotReturned(LocalDate.now().minusDays(4));
+
+		assertThat(result).hasSize(1).contains(loan);
+
+	}
+	
+	@Test
+	@DisplayName("Não deve retornar empresimo vencidos a três dias atrás")
+	public void NotfindByLoanDateLessThanAndNotReturnedTest() {
+
+		Book book = BookPayloadFactor.createNewBook();
+		entityManager.persist(book);
+
+		Loan loan = LoanPayloadFactory.getNewLoan(LocalDate.now());
+		loan.setBook(book);
+
+		entityManager.persist(loan);
+
+		var result = repository.findByLoanDateLessThanAndNotReturned(LocalDate.now().minusDays(4));
+
+		assertThat(result).isEmpty();
+
+	}
+
+	@Test
+	@DisplayName("Deve buscar empréstimo pelo isbn do livro ou customer")
+	public void findByBookIsbnOrCustomerTest() {
+
+		Book book = BookPayloadFactor.createNewBook();
+		entityManager.persist(book);
+
+		Loan loan = LoanPayloadFactory.getNewLoan(LocalDate.now());
+		loan.setBook(book);
+
+		entityManager.persist(loan);
+
 		var retorno = repository.findByBookIsbnOrCustomer(book.getIsbn(), loan.getCustomer(), PageRequest.of(0, 10));
-		
+
 		assertThat(retorno.getContent()).hasSize(1);
 		assertThat(retorno.getContent()).contains(loan);
 		assertThat(retorno.getPageable().getPageSize()).isEqualTo(10);
 		assertThat(retorno.getPageable().getPageNumber()).isEqualTo(0);
 		assertThat(retorno.getTotalElements()).isEqualTo(1);
-		
-		
-		
-		
-		
-		
-		
+
 	}
 }

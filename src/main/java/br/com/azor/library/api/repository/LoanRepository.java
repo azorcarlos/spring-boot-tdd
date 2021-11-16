@@ -1,5 +1,8 @@
 package br.com.azor.library.api.repository;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -28,5 +31,8 @@ public interface LoanRepository extends JpaRepository<Loan, Long> {
 	    );
 
 	Page<Loan> findByBook(Book book, Pageable pegeable);
+
+	@Query("select l from Loan l where l.loanDate <= :threDaysAgo and (l.returned is null or l.returned is false)")
+	List<Loan> findByLoanDateLessThanAndNotReturned(@Param("threDaysAgo") LocalDate threDaysAgo);
 
 }

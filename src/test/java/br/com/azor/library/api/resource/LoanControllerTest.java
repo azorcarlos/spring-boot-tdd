@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -62,7 +63,7 @@ public class LoanControllerTest {
 	@DisplayName("Deve realizar um emprestimo")
 	public void createdNewLoanTest() throws Exception {
 
-		LoanDTO dto = LoanDTO.builder().customer("Fulano").isbn("123").build();
+		LoanDTO dto = LoanDTO.builder().customer("Fulano").email("fulano@email.com").isbn("123").build();
 		String json = new ObjectMapper().writeValueAsString(dto);
 
 		BDDMockito.given(booKservice.getBookByIsbn(dto.getIsbn())).willReturn(Optional.of(BookPayloadFactor.bookDataBook()));
