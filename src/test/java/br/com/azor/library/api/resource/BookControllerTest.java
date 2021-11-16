@@ -35,6 +35,7 @@ import br.com.azor.library.api.dto.BookDTO;
 import br.com.azor.library.api.exception.BusinessException;
 import br.com.azor.library.api.model.entity.Book;
 import br.com.azor.library.api.service.BookService;
+import br.com.azor.library.api.service.LoanService;
 
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
@@ -51,6 +52,9 @@ public class BookControllerTest {
 	
 	@MockBean
 	BookService service;	
+	
+	@MockBean
+	private LoanService loanService;
 
 	@Test
 	@DisplayName("Criar Cadastro de Books com Sucesso")

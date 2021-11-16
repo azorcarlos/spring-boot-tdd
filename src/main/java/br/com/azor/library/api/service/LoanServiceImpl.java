@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.azor.library.api.dto.LoanFilterDTO;
 import br.com.azor.library.api.exception.BusinessException;
+import br.com.azor.library.api.model.entity.Book;
 import br.com.azor.library.api.model.entity.Loan;
 import br.com.azor.library.api.repository.LoanRepository;
 import lombok.RequiredArgsConstructor;
@@ -39,6 +40,11 @@ public class LoanServiceImpl implements LoanService {
 	@Override
 	public Page<Loan> find(LoanFilterDTO filter, Pageable pageable) {
 		return repository.findByBookIsbnOrCustomer(filter.getIsbn(), filter.getCustomer(), pageable);
+	}
+
+	@Override
+	public Page<Loan> getLoansByBook(Book book, Pageable pegeable) {
+		return repository.findByBook(book, pegeable);
 	}
 
 }

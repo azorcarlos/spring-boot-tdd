@@ -27,4 +27,6 @@ public interface LoanRepository extends JpaRepository<Loan, Long> {
 	            Pageable pageable
 	    );
 
+	Page<Loan> findByBook(Book book, Pageable pegeable);
+
 }
