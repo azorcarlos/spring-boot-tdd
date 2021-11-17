@@ -34,7 +34,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import br.com.library.api.dto.BookDTO;
 import br.com.library.api.exception.BusinessException;
 import br.com.library.api.model.entity.Book;
-import br.com.library.api.resource.BookController;
 import br.com.library.api.service.BookService;
 import br.com.library.api.service.LoanService;
 

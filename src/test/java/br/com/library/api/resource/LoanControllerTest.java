@@ -5,7 +5,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -38,7 +37,6 @@ import br.com.library.api.exception.BusinessException;
 import br.com.library.api.model.entity.Loan;
 import br.com.library.api.payloads.BookPayloadFactor;
 import br.com.library.api.payloads.LoanPayloadFactory;
-import br.com.library.api.resource.LoanController;
 import br.com.library.api.service.BookService;
 import br.com.library.api.service.LoanService;
 

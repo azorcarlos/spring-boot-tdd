@@ -18,7 +18,6 @@ import br.com.library.api.model.entity.Book;
 import br.com.library.api.model.entity.Loan;
 import br.com.library.api.payloads.BookPayloadFactor;
 import br.com.library.api.payloads.LoanPayloadFactory;
-import br.com.library.api.repository.LoanRepository;
 import jdk.jfr.Description;
 
 @ExtendWith(SpringExtension.class)

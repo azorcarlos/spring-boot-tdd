@@ -27,11 +27,16 @@ import br.com.library.api.model.entity.Book;
 import br.com.library.api.model.entity.Loan;
 import br.com.library.api.service.BookService;
 import br.com.library.api.service.LoanService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/books")
 @RequiredArgsConstructor
+@Api("Book API")
 public class BookController {
 
 	private final BookService service;
@@ -40,6 +45,7 @@ public class BookController {
 
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
+	@ApiOperation("Create a Book")
 	public BookDTO create(@RequestBody @Valid BookDTO dto) {
 
 		Book entity = modelMapper.map(dto, Book.class);
@@ -51,6 +57,7 @@ public class BookController {
 	}
 
 	@GetMapping("{id}")
+	@ApiOperation("Get book by id")
 	public BookDTO get(@PathVariable Long id) {
 
 		return service.findById(id).map(book -> modelMapper.map(service.findById(id).get(), BookDTO.class))
@@ -59,6 +66,7 @@ public class BookController {
 	}
 
 	@GetMapping
+	@ApiOperation("List all books")
 	public Page<BookDTO> findAll(BookDTO dto, Pageable pageRequest) {
 		Book filter = modelMapper.map(dto, Book.class);
 		Page<Book> result = service.find(filter, pageRequest);
@@ -72,6 +80,7 @@ public class BookController {
 
 	@PutMapping("{id}")
 	@ResponseStatus(code = HttpStatus.OK)
+	@ApiOperation("Update books")
 	public BookDTO update(@PathVariable Long id, @RequestBody BookDTO bookDTO) {
 
 		Book book = service.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -85,6 +94,12 @@ public class BookController {
 
 	@DeleteMapping("{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	@ApiOperation("Excluir livro")
+	@ApiResponses({
+		@ApiResponse(code = 204, message = "Book successfully deleted!"),
+		@ApiResponse(code = 401, message = "Unauthorized procedure"),
+		@ApiResponse(code = 403, message = "Access denied!"),
+	})
 	public void deleteById(@PathVariable Long id) {
 
 		Book book = service.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -93,6 +108,7 @@ public class BookController {
 	}
 
 	@GetMapping("{id}/loans")
+	@ApiOperation("Return loans per book")
 	public Page<LoanDTO> loansByBook(@PathVariable Long id, Pageable pegeable) {
 		Book book = service.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 		Page<Loan> result = loanService.getLoansByBook(book, pegeable);
