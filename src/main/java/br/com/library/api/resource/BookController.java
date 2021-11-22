@@ -32,11 +32,13 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/api/books")
 @RequiredArgsConstructor
 @Api("Book API")
+@Slf4j
 public class BookController {
 
 	private final BookService service;
@@ -48,6 +50,7 @@ public class BookController {
 	@ApiOperation("Create a Book")
 	public BookDTO create(@RequestBody @Valid BookDTO dto) {
 
+		log.info("Create a book for isbn: {}", dto.getIsbn());
 		Book entity = modelMapper.map(dto, Book.class);
 
 		entity = service.save(entity);
@@ -59,6 +62,7 @@ public class BookController {
 	@GetMapping("{id}")
 	@ApiOperation("Get book by id")
 	public BookDTO get(@PathVariable Long id) {
+		log.info("Get By id: {}", id);
 
 		return service.findById(id).map(book -> modelMapper.map(service.findById(id).get(), BookDTO.class))
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
