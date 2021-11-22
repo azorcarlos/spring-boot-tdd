@@ -56,6 +56,8 @@ public class LoanServiceImpl implements LoanService {
 		LocalDate threDaysAgo = LocalDate.now().minusDays(loanDays);
 		
 		return repository.findByLoanDateLessThanAndNotReturned(threDaysAgo);
+		
+		
 	}
 
 }
