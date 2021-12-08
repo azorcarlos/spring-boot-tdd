@@ -1,0 +1,36 @@
+application:
+  mail:
+    message: Vc tem livros atrasados para entrega
+appliction:
+  email:
+    remetente: ${EMAIL_REMETENTE}
+logging:
+    name: appfile.log
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+server:
+  port: 8080
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:8081
+  mail:
+    host: ${EMAIL_HOST}
+    password: ${EMAIL_PASSWORD}
+    port: 2525
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    protocol: smtp
+    test-connection: true
+    username: ${EMAIL_USERNAME}
